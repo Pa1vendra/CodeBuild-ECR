@@ -20,6 +20,8 @@ phases:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
       - docker push 168231923555.dkr.ecr.ap-south-1.amazonaws.com/ecs-project:latest
+      - echo Writing image definitions file...
+      - printf '[{"name":"order-service","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
       - cat imagedefinitions.json
 artifacts:
   files:
